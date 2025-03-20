@@ -4,16 +4,21 @@ import (
 	"unsafe"
 )
 
-func ToLittleEndian(number uint32) uint32 {
-	if number == 0 || number == 0xffffffff {
+type Num interface {
+	uint16 | uint32 | uint64
+}
+
+func ToLittleEndian[T Num](number T) T {
+	if number == 0 {
 		return number
 	}
 	size := int(unsafe.Sizeof(number))
+	const byteSize = 8
 
-	var result uint32
+	var result T
 	for i := 0; i < size; i++ {
 		byt := *(*uint8)(unsafe.Add(unsafe.Pointer(&number), i))
-		result = (uint32(byt) << ((size - i - 1) * 8)) | result
+		result = (T(byt) << ((size - i - 1) * byteSize)) | result
 	}
 
 	return result
