@@ -1,4 +1,4 @@
-package endian_convertion
+package main
 
 import (
 	"unsafe"
