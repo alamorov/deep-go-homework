@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type Num interface {
 	int | int8 | int16 | int32 | int64
 }
@@ -85,24 +83,4 @@ func (q *CircularQueue[T]) Full() bool {
 	}
 
 	return false
-}
-
-func main() {
-	q := NewCircularQueue(3)
-	fmt.Printf("Front: %d\n", q.Front())
-	fmt.Printf("Back: %d\n", q.Back())
-
-	fmt.Printf("Push 1: %t\n", q.Push(1))
-	fmt.Printf("Front: %d\n", q.Front())
-	fmt.Printf("Back: %d\n", q.Back())
-
-	fmt.Printf("Push 2: %t\n", q.Push(2))
-	fmt.Printf("Front: %d\n", q.Front())
-	fmt.Printf("Back: %d\n", q.Back())
-
-	fmt.Printf("Push 3: %t\n", q.Push(3))
-	fmt.Printf("Front: %d\n", q.Front())
-	fmt.Printf("Back: %d\n", q.Back())
-
-	fmt.Printf("Push 4: %t\n", q.Push(4))
 }
