@@ -2,13 +2,11 @@ package main
 
 import (
 	"unsafe"
+
+	"golang.org/x/exp/constraints"
 )
 
-type Num interface {
-	uint16 | uint32 | uint64
-}
-
-func ToLittleEndian[T Num](number T) T {
+func ToLittleEndian[T constraints.Integer](number T) T {
 	if number == 0 {
 		return number
 	}
